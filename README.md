@@ -26,7 +26,7 @@ The project uses the publicly available **CPIAUCSL** dataset, sourced from FRED 
 
 ## CNN-LSTM Model Architecture
 
-The CNN-LSTM model implemented in this project has the following architecture:
+The base CNN-LSTM model implemented in this project has the following architecture:
 
 *   **Bidirectional ConvLSTM2D Layers:**
     *   First Layer: 128 filters, kernel size (1, 1), 'selu' activation, `return_sequences=True`, input shape `(1, 1, 1, features)` (where `features` is the number of input features).
@@ -38,6 +38,8 @@ The CNN-LSTM model implemented in this project has the following architecture:
 *   **Optimizer:** Adam optimizer with a learning rate of 0.0005.
 *   **Loss Function:** Mean Squared Error (MSE) is used as the loss function, suitable for regression tasks like time series forecasting.
 *   **Early Stopping:**  Implemented using `tensorflow.keras.callbacks.EarlyStopping` to monitor validation loss (`val_loss`) and stop training if validation loss does not improve for a patience of 50 epochs, restoring the best weights to prevent overfitting.
+
+This architecture will change as we experiment with other hyperparameters.
 
 ## Code Structure and Key Functions
 
@@ -100,4 +102,11 @@ The CNN-LSTM model is expected to capture complex temporal patterns in the infla
     *   Generate and display various plots: forecast plots, observed vs fitted plots, and loss curves.
     *   If implemented, it will also generate a grid plot combining visualizations from different models.
 
-## File Structure
+## Possible Improvements and Future Work
+
+*   **Hyperparameter Tuning:**  Perform more extensive hyperparameter tuning for the CNN-LSTM model (e.g., number of layers, filters, kernel sizes, learning rate, batch size, epochs, optimizer choices) to potentially improve performance.
+*   **Feature Engineering:** Incorporate additional relevant economic indicators (e.g., unemployment rate, interest rates, GDP growth, etc.) as exogenous variables to potentially improve forecast accuracy, especially for the VAR and CNN-LSTM models (making them multivariate).
+*   **Advanced CNN-LSTM Architectures:** Experiment with different CNN-LSTM architectures, such as adding attention mechanisms, more complex convolutional or LSTM layer configurations, or exploring different types of recurrent layers (GRU).
+*   **Model Ensembling:** Explore ensemble methods, combining predictions from multiple models (e.g., averaging forecasts from CNN-LSTM, VAR, ARIMA) to potentially create more robust and accurate forecasts.
+*   **Evaluation Metrics:** Explore and report additional evaluation metrics beyond MAE and RMSE, such as MAPE (Mean Absolute Percentage Error), sMAPE (Symmetric Mean Absolute Percentage Error), or metrics relevant to economic forecasting.
+*   **Real-time Forecasting and Deployment:**  Consider deploying the best performing model for real-time inflation forecasting, potentially setting up an automated pipeline for data ingestion, model retraining, and forecast generation.
