@@ -29,8 +29,8 @@ The project uses the publicly available **CPIAUCSL** dataset, sourced from FRED 
 The base CNN-LSTM model implemented in this project has the following architecture:
 
 *   **Bidirectional ConvLSTM2D Layers:**
-    *   First Layer: 128 filters, kernel size (1, 1), 'selu' activation, `return_sequences=True`, input shape `(1, 1, 1, features)` (where `features` is the number of input features).
-    *   Second Layer: 64 filters, kernel size (1, 1), 'selu' activation, `return_sequences=False`.
+    *   First Layer: 64 filters, kernel size (1, 1), 'tanh' activation, `return_sequences=True`, input shape `(1, 1, 1, features)` (where `features` is the number of input features).
+    *   Second Layer: 32 filters, kernel size (1, 1), 'tanh' activation, `return_sequences=False`.
     *   Bidirectional wrappers are used to process the sequence in both forward and backward directions, potentially capturing more complex temporal patterns.
     *   'selu' activation function is used for potential self-normalizing properties.
 *   **Flatten Layer:** Flattens the output from the ConvLSTM2D layers into a 1D tensor.
@@ -110,3 +110,6 @@ The CNN-LSTM model is expected to capture complex temporal patterns in the infla
 *   **Model Ensembling:** Explore ensemble methods, combining predictions from multiple models (e.g., averaging forecasts from CNN-LSTM, VAR, ARIMA) to potentially create more robust and accurate forecasts.
 *   **Evaluation Metrics:** Explore and report additional evaluation metrics beyond MAE and RMSE, such as MAPE (Mean Absolute Percentage Error), sMAPE (Symmetric Mean Absolute Percentage Error), or metrics relevant to economic forecasting.
 *   **Real-time Forecasting and Deployment:**  Consider deploying the best performing model for real-time inflation forecasting, potentially setting up an automated pipeline for data ingestion, model retraining, and forecast generation.
+
+
+Disclaimer: README might not accurately capture all that was done in the code as it was written while the research was ongoing. For instance certain hyperameter values were reconfigured along the line and the change not reflected in the README
